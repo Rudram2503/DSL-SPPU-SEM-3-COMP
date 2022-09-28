@@ -1,0 +1,97 @@
+def accept(cricket, a):
+for i in range (a):
+student=input("Enter the name of student:")
+if(student not in cricket):
+cricket.append(student)
+else:
+while(student in cricket):
+print("Duplicate entry")
+student=input("Enter the name of student:")
+cricket.append(student)
+
+def union (cricketUfootball,cricket,football,c):
+cricketUfootball.extend(cricket)
+for i in range(c):
+if(football[i] not in cricket):
+cricketUfootball.append(football[i])
+
+cricket=[]
+a=int(input("Enter no. of students playing Cricket: "))
+accept(cricket,a)
+print("The students Playing Cricket are ", cricket)
+print("\n")
+
+badminton=[]
+b=int(input("Enter no. of students playing Badminton: "))
+accept(badminton,b)
+print("The students Playing Badminton are ", badminton)
+print("\n")
+
+football=[]
+c=int(input("Enter no. of students playing Football: "))
+accept(football,c)
+print("The students Playing Football are ", football)
+
+print("\n")
+
+names=[]
+for i in range (a):
+names.append(cricket[i])
+for i in range (b):
+if(badminton[i] not in names):
+names.append(badminton[i])
+for i in range (c):
+if(football[i] not in names):
+names.append(football[i])
+u=len(names)
+print("The complete set of student who play games is",names)
+print("The students Playing Cricket are ", cricket)
+print("The students Playing Badminton are ", badminton)
+print("The students Playing football are ", football)
+print("\n")
+
+D=[]
+for i in range(a):
+if(cricket[i] in badminton):
+D.append(cricket[i])
+d=len(D)
+print("The No of student who play both Cricket and Badminton",d)
+
+print("List of students who play both Cricket and Badminton: ", D)
+print("\n")
+
+E=[]
+for i in range(a):
+if(cricket[i] not in D):
+E.append(cricket[i])
+for i in range(b):
+if(badminton[i] not in D):
+E.append(badminton[i])
+e=len(E)
+print("The No. of student who neither play Cricket nor Badminton is: ",e)
+print("List of students who play either cricket or badminton but not both: ", E)
+print("\n")
+
+cricketUbadminton=[]
+union(cricketUbadminton,cricket,badminton,b)
+F=[]
+for i in range(u):
+if(names[i] not in cricketUbadminton):
+F.append(names[i])
+f=len(F)
+print("The No. of student who neither play Cricket nor Badminton is: ",f)
+print("The name of student who play neither Cricket nor Badminton are: ", F)
+
+print("\n")
+
+cricketUfootball=[]
+union(cricketUfootball,cricket,football,c)
+auc=len(cricketUfootball)
+
+G=[]
+for i in range(auc):
+if(cricketUfootball[i] not in badminton):
+G.append(cricketUfootball[i])
+g=len(G)
+print("The No. of student who play cricket and Football but not badminton is: ",g)
+print("The name of student who play cricket and Football but not badminton : ", G)
