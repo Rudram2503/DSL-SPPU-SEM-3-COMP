@@ -92,3 +92,4 @@ freq[1] = maximum
 freq[2] = freq[0]
 
 print("Highest Frequency Marks of students are : ", freq[2], " and is scored by : ", freq[1]," students ")
+
