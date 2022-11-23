@@ -1,0 +1,108 @@
+import array as arr
+# Accept the Roll Numbers of the students
+def accept_roll():
+a = arr.array('I', [])
+no_stud = int(input("Enter the number of Students : "))
+for i in range(0, no_stud):
+a.append(int(input("Enter the Roll Number : ")))
+return a
+# Print the Roll Numbers of the Students
+def print_roll(a):
+for i in range(0, len(a)):
+print("\t", a[i], end=" ")
+print()
+# Linear Search
+def linear_search(a, x):
+for i in range(len(a)):
+
+if a[i] == x:
+return i
+return -1
+# Sentinel Search
+def sentinel_search(a, x):
+count = len(a)
+a.append(x)
+i = 0
+while a[i] != x:
+i = i + 1
+if i != count:
+return i
+else:
+return -1
+# Binary Search recursive
+def binary_search_R(a, l, r, x):
+if r >= l:
+mid = l + (r - l) // 2
+if a[mid] == x:
+return mid
+elif a[mid] > x:
+return binary_search_R(a, l, mid - 1, x)
+else:
+return binary_search_R(a, mid + 1, r, x)
+else:
+return -1
+# Fibonacci Search
+
+def fibonacci_search(a, x):
+# Initialize the Fibonacci numbers
+fib1, fib2 = 1, 0
+fibn = fib2 + fib1
+a_len = len(a)
+while fibn < a_len:
+fib2 = fib1
+fib1 = fibn
+fibn = fib2 + fib1
+ind = -1
+while fibn > 1:
+n = min(ind + fib2, a_len - 1)
+if a[n] > x:
+fibn = fib2
+fib1 = fib1 - fib2
+fib2 = fibn - fib1
+elif a[n] < x:
+fibn = fib1
+fib1 = fib2
+fib2 = fibn - fib1
+ind = n
+else:
+return n
+if a[ind + 1] == n and fib1 == 1:
+return ind + 1
+return -1
+if __name__ == "__main__":
+
+unsort_A = arr.array('I', []) # array of unsigned integer
+ins_sort_A = arr.array('I', [])
+flag = 1
+while flag == 1:
+menu = "1. Accept Student Roll Numbers who attended training program\n" \
+"2. Display the Roll Numbers of students who attended training program\n" \
+"3. Binary Search (Recursive) \n" \
+"4. Fibonacci Search \n" \
+"5. Exit \n "
+print(menu)
+choice = int(input("Enter your choice : "))
+if choice == 1:
+unsort_A = accept_roll()
+elif choice == 2:
+print_roll(unsort_A)
+elif choice == 3:
+roll = int(input("Enter the Roll Number to be search : "))
+index = binary_search_R(unsort_A, 0, len(unsort_A) - 1, roll)
+if index == -1:
+print("Roll number", roll, "has not Attended the training program\n")
+else:
+print("Roll number", roll, " at the index", index, "has Attended the training
+program\n")
+elif choice == 4:
+roll = int(input("Enter the Roll Number to be search : "))
+index = fibonacci_search(unsort_A, roll)
+if index == -1:
+
+print("Roll number", roll, "has not Attended the training program\n")
+else:
+print("Roll number", roll, " at the index", index, "has Attended the training
+program\n")
+else:
+print("End Of Program!!\n")
+flag = 0
